@@ -26,6 +26,7 @@ public class splashActivity extends AppCompatActivity {
                 }
                 Intent homeIntent = new Intent(splashActivity.this,LoginActivity.class);
                 startActivity(homeIntent);
+                finish();
             }
         },SPLASH_TIME_OUT);
     }

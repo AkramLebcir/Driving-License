@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#c2185b</color>
     <color name="colorAccent">#ffffff</color>
     <color name="colorBlack">#212121</color>
+    <color name="colorBlack2">#303030</color>
     <color name="from">#000000</color>
     <color name="subject">#111111</color>
     <color name="timestamp">#4285f4</color>

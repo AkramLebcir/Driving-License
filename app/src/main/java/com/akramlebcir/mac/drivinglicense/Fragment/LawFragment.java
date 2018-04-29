@@ -2,6 +2,8 @@ package com.akramlebcir.mac.drivinglicense.Fragment;
 
 
 import android.content.Intent;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
@@ -76,26 +78,33 @@ public class LawFragment extends android.support.v4.app.Fragment {
             }
         });
         
-        layout.addSection(getSection("Infraction Niv 1"));
-        layout.addSection(getSection("Infraction Niv 2"));
-        layout.addSection(getSection("Infraction Niv 3"));
-        layout.addSection(getSection("Infraction Niv 4"));
+        layout.addSection(getSection("Infraction Niv 1","1",2000,1));
+        layout.addSection(getSection("Infraction Niv 2","2",2500,2));
+        layout.addSection(getSection("Infraction Niv 3","3",3000,4));
+        layout.addSection(getSection("Infraction Niv 4","4",5000,6));
+        layout.addSection(getSection("Infraction Niv 5","5",20000,10));
     }
 
-    private Section<Infraction_niv,Infraction_detail> getSection(String title_niv) {
+    private Section<Infraction_niv,Infraction_detail> getSection(String title_niv,String id,int prix , int point) {
         Section<Infraction_niv,Infraction_detail> section = new Section<>();
 
 
-        List<Infraction_detail> list = new ArrayList<>();
-        for (int i=0;i<5;i++){
-            list.add(new Infraction_detail("Infraction : "+(i+1),""+i,""+(i+100)));
+        int arrayId = getResources().getIdentifier("Niv_"+id, "array",getContext().getPackageName());
+
+        if (arrayId != 0) {
+            TypedArray infractions = getResources().obtainTypedArray(arrayId);
+
+            List<Infraction_detail> list = new ArrayList<>();
+            for (int i=0;i<infractions.length();i++){
+                String infraction = infractions.getString(i);
+                list.add(new Infraction_detail("Infraction : "+infraction,point+" Point",prix+" DA"));
+            }
+            Infraction_niv niv = new Infraction_niv(title_niv);
+            List<Infraction_detail> list_detail = list;
+
+            section.parent = niv;
+            section.children.addAll(list_detail);
         }
-
-        Infraction_niv niv = new Infraction_niv(title_niv);
-        List<Infraction_detail> list_detail = list;
-
-        section.parent = niv;
-        section.children.addAll(list_detail);
         return section;
     }
 }

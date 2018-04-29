@@ -107,17 +107,15 @@ public class InfractionFragment extends android.support.v4.app.Fragment
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                PaymentDataRequest request = createPaymentDataRequest();
-//                if (request != null) {
-//                    AutoResolveHelper.resolveTask(
-//                            mPaymentsClient.loadPaymentData(request),
-//                            getActivity(),
-//                            // LOAD_PAYMENT_DATA_REQUEST_CODE is a constant value
-//                            // you define.
-//                            LOAD_PAYMENT_DATA_REQUEST_CODE);
-//                }
-
-                deleteMessages();
+                PaymentDataRequest request = createPaymentDataRequest();
+                if (request != null) {
+                    AutoResolveHelper.resolveTask(
+                            mPaymentsClient.loadPaymentData(request),
+                            getActivity(),
+                            // LOAD_PAYMENT_DATA_REQUEST_CODE is a constant value
+                            // you define.
+                            LOAD_PAYMENT_DATA_REQUEST_CODE);
+                }
             }
         });
     }
@@ -186,9 +184,12 @@ public class InfractionFragment extends android.support.v4.app.Fragment
                     case Activity.RESULT_OK:
                         PaymentData paymentData = PaymentData.getFromIntent(data);
                         String token = paymentData.getPaymentMethodToken().getToken();
+                        Toast.makeText(getContext(), "RESULT_OK", Toast.LENGTH_SHORT).show();
+                        deleteMessages();
                         break;
                     case Activity.RESULT_CANCELED:
-
+                        Toast.makeText(getContext(), "RESULT_CANCELED", Toast.LENGTH_SHORT).show();
+                        deleteMessages();
 
                         break;
                     case AutoResolveHelper.RESULT_ERROR:
@@ -196,13 +197,19 @@ public class InfractionFragment extends android.support.v4.app.Fragment
                         // Log the status for debugging.
                         // Generally, there is no need to show an error to
                         // the user as the Google Pay API will do that.
+                        Toast.makeText(getContext(), "RESULT_ERROR", Toast.LENGTH_SHORT).show();
+                        deleteMessages();
                         break;
                     default:
                         // Do nothing.
+                        Toast.makeText(getContext(), "Do nothing", Toast.LENGTH_SHORT).show();
+                        deleteMessages();
                 }
                 break;
             default:
                 // Do nothing.
+                Toast.makeText(getContext(), "Do nothing", Toast.LENGTH_SHORT).show();
+                deleteMessages();
         }
     }
 
@@ -240,10 +247,6 @@ public class InfractionFragment extends android.support.v4.app.Fragment
 
     @Override
     public void onIconClicked(int position) {
-//        if (actionMode == null) {
-////            actionMode = getActivity().startActionMode((android.view.ActionMode.Callback) actionModeCallback);
-//        }
-
         toggleSelection(position);
     }
 
