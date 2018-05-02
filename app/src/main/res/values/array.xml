@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="Niv_1">
-        <item name="red_400" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
-        <item name="pink_400" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
-        <item name="purple_400" type="text">#ab47bc</item>
-        <item name="deep_purple_400" type="text">#7e57c2</item>
-        <item name="indigo_400" type="text">#5c6bc0</item>
-        <item name="blue_400" type="text">#738ffe</item>
-        <item name="light_blue_400" type="text">#29b6f6</item>
-        <item name="cyan_400" type="text">#26c6da</item>
-        <item name="teal_400" type="text">#26a69a</item>
-
-    </array>
-    <array name="Niv_2">
-        <item name="red_500" type="text">#e51c23</item>
-        <item name="pink_500" type="text">#e91e63</item>
-        <item name="purple_500" type="text">#9c27b0</item>
-        <item name="deep_purple_500" type="text">#673ab7</item>
-        <item name="indigo_500" type="text">#3f51b5</item>
-        <item name="blue_500" type="text">#5677fc</item>
-        <item name="light_blue_500" type="text">#03a9f4</item>
-    </array>
-    <array name="Niv_3">
-        <item name="red_600" type="text">#e84e40</item>
-
-    </array>
-    <array name="Niv_4">
-        <item name="red_700" type="text">#e84e40</item>
-
-    </array>
-    <array name="Niv_5">
-        <item name="red_700" type="text">#e84e40</item>
-
-    </array>
+        <array name="Niv_1">
+            <item name="1" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="2" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="3" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="4" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="5" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="6" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+        </array>
+        <array name="Niv_2">
+            <item name="1" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="2" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="3" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="4" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="5" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="6" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+        </array>
+        <array name="Niv_3">
+            <item name="1" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="2" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="3" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="4" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="5" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="6" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+        </array>
+        <array name="Niv_4">
+            <item name="1" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="2" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="3" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="4" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="5" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="6" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+        </array>
+        <array name="Niv_5">
+            <item name="1" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="2" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="3" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="4" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+            <item name="5" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
+            <item name="6" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your</item>
+        </array>
 </resources>

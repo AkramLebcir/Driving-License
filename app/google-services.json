@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256142943914:android:03c373705f937ce6",
+        "android_client_info": {
+          "package_name": "com.akramlebcir.mac.police"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256142943914-uvfi8hsbahpb6bl90jbfohjnf1gpcqm6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.akramlebcir.mac.police",
+            "certificate_hash": "5237e9fc279049518de34e1694426dafccd1855d"
+          }
+        },
+        {
+          "client_id": "256142943914-8nu41k2vopvu77jdfherfhv7cbur5muk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkGS6Il5AV9X-bd_2XBDaYRZR3oBe9ZuY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256142943914-8nu41k2vopvu77jdfherfhv7cbur5muk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

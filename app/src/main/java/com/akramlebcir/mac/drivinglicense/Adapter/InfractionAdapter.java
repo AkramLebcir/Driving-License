@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.SparseBooleanArray;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -16,11 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.akramlebcir.mac.drivinglicense.R;
-import com.akramlebcir.mac.drivinglicense.helper.CircleTransform;
 import com.akramlebcir.mac.drivinglicense.helper.FlipAnimator;
-import com.akramlebcir.mac.drivinglicense.model.Message;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.akramlebcir.mac.drivinglicense.model.Infraction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +24,7 @@ import java.util.List;
 
 public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.MyViewHolder> {
     private Context mContext;
-    private List<Message> messages;
+    private List<Infraction> infractions;
     private InfractionAdapterListener listener;
     public SparseBooleanArray selectedItems;
 
@@ -41,16 +37,16 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
     private static int currentSelectedIndex = -1;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
-        public TextView from, subject, message, iconText, timestamp;
+        public TextView infractionname, point, prix, iconText, timestamp;
         public ImageView iconImp, imgProfile;
         public LinearLayout messageContainer;
         public RelativeLayout iconContainer, iconBack, iconFront;
 
         public MyViewHolder(View view) {
             super(view);
-            from = view.findViewById(R.id.from);
-            subject = view.findViewById(R.id.txt_primary);
-            message = view.findViewById(R.id.txt_secondary);
+            infractionname = view.findViewById(R.id.from);
+            point = view.findViewById(R.id.txt_primary);
+            prix = view.findViewById(R.id.txt_secondary);
             iconText = view.findViewById(R.id.icon_text);
             timestamp = view.findViewById(R.id.timestamp);
             iconBack =  view.findViewById(R.id.icon_back);
@@ -71,9 +67,9 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
     }
 
 
-    public InfractionAdapter(Context mContext, List<Message> messages, InfractionAdapterListener listener) {
+    public InfractionAdapter(Context mContext, List<Infraction> infractions, InfractionAdapterListener listener) {
         this.mContext = mContext;
-        this.messages = messages;
+        this.infractions = infractions;
         this.listener = listener;
         selectedItems = new SparseBooleanArray();
         animationItemsIndex = new SparseBooleanArray();
@@ -89,31 +85,32 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        Message message = messages.get(position);
+        Infraction infraction = infractions.get(position);
 
         // displaying text view data
-        holder.from.setText(message.getFrom());
-        holder.subject.setText(message.getSubject());
-        holder.message.setText(message.getMessage());
-        holder.timestamp.setText(message.getTimestamp());
+        holder.infractionname.setText(infraction.getInfractionname());
+        holder.point.setText(infraction.getPoint()+" point");
+        holder.prix.setText(infraction.getPrice()+" DA");
+        holder.timestamp.setText(infraction.getInfractiondate());
 
         // displaying the first letter of From in icon text
-        holder.iconText.setText(message.getFrom().substring(0, 1));
+        // infraction.getInfractionname().substring(0, 1)
+        holder.iconText.setText(infraction.getLevel()+"");
 
         // change the row state to activated
         holder.itemView.setActivated(selectedItems.get(position, false));
 
         // change the font style depending on message read status
-        applyReadStatus(holder, message);
+        applyReadStatus(holder, infraction);
 
         // handle message star
-        applyImportant(holder, message);
+        applyImportant(holder, infraction);
 
         // handle icon animation
         applyIconAnimation(holder, position);
 
         // display profile image
-        applyProfilePicture(holder, message);
+        applyProfilePicture(holder, infraction);
 
         // apply click events
         applyClickEvents(holder, position);
@@ -151,21 +148,11 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
         });
     }
 
-    private void applyProfilePicture(MyViewHolder holder, Message message) {
-        if (!TextUtils.isEmpty(message.getPicture())) {
-            Glide.with(mContext).load(message.getPicture())
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .transform(new CircleTransform(mContext))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(holder.imgProfile);
-            holder.imgProfile.setColorFilter(null);
-            holder.iconText.setVisibility(View.GONE);
-        } else {
+    private void applyProfilePicture(MyViewHolder holder, Infraction infraction) {
+
             holder.imgProfile.setImageResource(R.drawable.bg_circle);
-            holder.imgProfile.setColorFilter(message.getColor());
+            holder.imgProfile.setColorFilter(infraction.getLevel());
             holder.iconText.setVisibility(View.VISIBLE);
-        }
     }
 
     private void applyIconAnimation(MyViewHolder holder, int position) {
@@ -206,11 +193,11 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
 
     @Override
     public long getItemId(int position) {
-        return messages.get(position).getId();
+        return infractions.get(position).getId();
     }
 
-    private void applyImportant(MyViewHolder holder, Message message) {
-        if (message.isImportant()) {
+    private void applyImportant(MyViewHolder holder, Infraction infraction) {
+        if (infraction.isPay()) {
             holder.iconImp.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_point_black_24dp));
             holder.iconImp.setColorFilter(ContextCompat.getColor(mContext, R.color.icon_tint_selected));
         } else {
@@ -219,23 +206,23 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
         }
     }
 
-    private void applyReadStatus(MyViewHolder holder, Message message) {
-        if (message.isRead()) {
-            holder.from.setTypeface(null, Typeface.NORMAL);
-            holder.subject.setTypeface(null, Typeface.NORMAL);
-            holder.from.setTextColor(ContextCompat.getColor(mContext, R.color.subject));
-            holder.subject.setTextColor(ContextCompat.getColor(mContext, R.color.message));
-        } else {
-            holder.from.setTypeface(null, Typeface.BOLD);
-            holder.subject.setTypeface(null, Typeface.BOLD);
-            holder.from.setTextColor(ContextCompat.getColor(mContext, R.color.from));
-            holder.subject.setTextColor(ContextCompat.getColor(mContext, R.color.subject));
-        }
+    private void applyReadStatus(MyViewHolder holder, Infraction infraction) {
+//        if (infraction.isRead()) {
+            holder.infractionname.setTypeface(null, Typeface.NORMAL);
+            holder.point.setTypeface(null, Typeface.NORMAL);
+            holder.infractionname.setTextColor(ContextCompat.getColor(mContext, R.color.subject));
+            holder.point.setTextColor(ContextCompat.getColor(mContext, R.color.message));
+//        } else {
+//            holder.infractionname.setTypeface(null, Typeface.BOLD);
+//            holder.point.setTypeface(null, Typeface.BOLD);
+//            holder.infractionname.setTextColor(ContextCompat.getColor(mContext, R.color.from));
+//            holder.point.setTextColor(ContextCompat.getColor(mContext, R.color.subject));
+//        }
     }
 
     @Override
     public int getItemCount() {
-        return messages.size();
+        return infractions.size();
     }
 
     public void toggleSelection(int pos) {
@@ -270,7 +257,7 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
     }
 
     public void removeData(int position) {
-        messages.remove(position);
+        infractions.remove(position);
         resetCurrentIndex();
     }
 

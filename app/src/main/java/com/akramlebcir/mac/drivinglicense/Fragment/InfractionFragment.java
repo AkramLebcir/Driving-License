@@ -10,27 +10,26 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.akramlebcir.mac.drivinglicense.Activity.MainActivity;
 import com.akramlebcir.mac.drivinglicense.Adapter.InfractionAdapter;
 import com.akramlebcir.mac.drivinglicense.R;
-import com.akramlebcir.mac.drivinglicense.model.Message;
+import com.akramlebcir.mac.drivinglicense.model.Citizen;
+import com.akramlebcir.mac.drivinglicense.model.DriverLicense;
+import com.akramlebcir.mac.drivinglicense.model.Infraction;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wallet.AutoResolveHelper;
 import com.google.android.gms.wallet.CardRequirements;
@@ -42,6 +41,16 @@ import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.TransactionInfo;
 import com.google.android.gms.wallet.Wallet;
 import com.google.android.gms.wallet.WalletConstants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Transaction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +61,7 @@ public class InfractionFragment extends android.support.v4.app.Fragment
         InfractionAdapter.InfractionAdapterListener {
 
     private static final int LOAD_PAYMENT_DATA_REQUEST_CODE = 1;
-    private List<Message> messages = new ArrayList<>();
+    private List<Infraction> infractions = new ArrayList<>();
     private RecyclerView recyclerView;
     private FloatingActionButton fb;
     private InfractionAdapter mAdapter;
@@ -60,6 +69,10 @@ public class InfractionFragment extends android.support.v4.app.Fragment
 //    private ActionModeCallback actionModeCallback;
 //    private android.view.ActionMode actionMode;
     private PaymentsClient mPaymentsClient;
+    private Citizen citizen;
+
+    private FirebaseFirestore db;
+    private DocumentReference docRef;
 
     public InfractionFragment() {
         // Required empty public constructor
@@ -68,7 +81,6 @@ public class InfractionFragment extends android.support.v4.app.Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_infraction, container, false);
     }
@@ -80,9 +92,11 @@ public class InfractionFragment extends android.support.v4.app.Fragment
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
 
+//        db = FirebaseFirestore.getInstance();
+
         fb = view.findViewById(R.id.floatingActionButton);
 
-        mAdapter = new InfractionAdapter(getContext(),messages,this);
+        mAdapter = new InfractionAdapter(getContext(),infractions,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -107,6 +121,7 @@ public class InfractionFragment extends android.support.v4.app.Fragment
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 PaymentDataRequest request = createPaymentDataRequest();
                 if (request != null) {
                     AutoResolveHelper.resolveTask(
@@ -115,6 +130,16 @@ public class InfractionFragment extends android.support.v4.app.Fragment
                             // LOAD_PAYMENT_DATA_REQUEST_CODE is a constant value
                             // you define.
                             LOAD_PAYMENT_DATA_REQUEST_CODE);
+
+                    int p=0;
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    for (int i =0;i<mAdapter.getSelectedItems().size();i++){
+                        if (mAdapter.getSelectedItems()!=null)
+                            p = mAdapter.getSelectedItems().get(i);
+                    }
+                    toggleSelection(p);
+                    DatabaseReference myRef = database.getReference("Citizen/uVgm1uxDhif7cHomWxPLGwEtWXI3/driverLicense/infractions/"+p+"/pay");
+                    myRef.setValue(false);
                 }
             }
         });
@@ -216,15 +241,88 @@ public class InfractionFragment extends android.support.v4.app.Fragment
     private void getInbox() {
         swipeRefreshLayout.setRefreshing(true);
 
-        messages.clear();
+        infractions.clear();
 
-        for (int i=0;i<10;i++) {
-            messages.add(new Message(i,"infraction","infraction","infraction","8:00","https://api.androidhive.info/json/google.png",true,true,i));
-        }
+//        docRef = db.collection("Citizen").document("IpNL0FncuAVX5ZoVl3go");
+//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                citizen = documentSnapshot.toObject(Citizen.class);
+//                for (int i=0;i<citizen.getDriverLicense().getInfractions().size();i++){
+//                    infractions.add(citizen.getDriverLicense().getInfractions().get(i));
+//                }
+//
+//            }
+//        });
 
-        mAdapter.notifyDataSetChanged();
-        swipeRefreshLayout.setRefreshing(false);
-        swipeRefreshLayout.setRefreshing(false);
+//        docRef = db.collection("Citizen").document("IpNL0FncuAVX5ZoVl3go");
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d("firebase", "DocumentSnapshot data: " + document.getData());
+//                        DriverLicense driverLicense = document.getData().get("driverLicense");
+//                        citizen = new Citizen(document.getId(),
+//                                document.getString("sixe"),
+//                                document.getString("placeofbirth"),
+//                                document.getString("picture"),
+//                                document.getString("nationality"),
+//                                document.getString("firstname"),
+//                                document.getString("lastname"),
+//                                document.getString("dateofbirth"),
+//                                document.getString("bloodtype"),
+//                                document.getString("address").,
+//                                (int)document.get("age"),
+//                                (DriverLicense) document.get("driverLicense"));
+//
+//                        Citizen citizen = new Citizen();
+//                        citizen = document.toObject(Citizen.class);
+//                        for (int i=0;i<citizen.getDriverLicense().getInfractions().size();i++){
+//                            infractions.add(citizen.getDriverLicense().getInfractions().get(i));
+//                        }
+//                    } else {
+//                        Log.d("firebase", "No such document");
+//                    }
+//                } else {
+//                    Log.d("firebase", "get failed with ", task.getException());
+//                }
+//            }
+//        });
+//
+//
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+        DatabaseReference myRef = database.getReference("Citizen/uVgm1uxDhif7cHomWxPLGwEtWXI3/driverLicense");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                infractions.clear();
+                DriverLicense value = dataSnapshot.getValue(DriverLicense.class);
+                for (int i=0;i<value.getInfractions().size();i++){
+                    infractions.add(value.getInfractions().get(i));
+                }
+                mAdapter.notifyDataSetChanged();
+                swipeRefreshLayout.setRefreshing(false);
+                swipeRefreshLayout.setRefreshing(false);
+                Log.d("err firebase", "Value is: " + value.getInfractions().get(0));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                swipeRefreshLayout.setRefreshing(false);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+
+
     }
 
     private int getRandomMaterialColor(String typeColor) {
@@ -253,9 +351,9 @@ public class InfractionFragment extends android.support.v4.app.Fragment
     @Override
     public void onIconImportantClicked(int position) {
 
-        Message message = messages.get(position);
-        message.setImportant(!message.isImportant());
-        messages.set(position, message);
+        Infraction infraction = infractions.get(position);
+        infraction.setPay(!infraction.isPay());
+        infractions.set(position, infraction);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -265,12 +363,12 @@ public class InfractionFragment extends android.support.v4.app.Fragment
             enableActionMode(position);
         } else {
             // read the message which removes bold from the row
-            Message message = messages.get(position);
-            message.setRead(true);
-            messages.set(position, message);
+            Infraction infraction = infractions.get(position);
+            //infraction.setRead(true);
+            infractions.set(position, infraction);
             mAdapter.notifyDataSetChanged();
 
-            Toast.makeText(getContext(), "Read: " + message.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Read: " + infraction.getInfractionname(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -286,7 +384,7 @@ public class InfractionFragment extends android.support.v4.app.Fragment
 
     private void toggleSelection(int position) {
         int count = mAdapter.getSelectedItemCount();
-        if ((mAdapter.selectedItems.get(position) || count<=0) && messages.get(position).isImportant()) {
+        if ((mAdapter.selectedItems.get(position) || count<=0) && infractions.get(position).isPay()) {
             mAdapter.toggleSelection(position);
         }
     }

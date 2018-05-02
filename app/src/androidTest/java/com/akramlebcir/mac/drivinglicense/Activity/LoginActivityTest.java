@@ -82,6 +82,16 @@ public class LoginActivityTest {
                         isDisplayed()));
         appCompatImageView.perform(click());
 
+        ViewInteraction appCompatImageView2 = onView(
+                Matchers.allOf(withId(R.id.icon_profile),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.recycler_view),
+                                        1),
+                                2),
+                        isDisplayed()));
+        appCompatImageView2.perform(click());
+
 //        ViewInteraction relativeLayout = onView(
 //                Matchers.allOf(withId(R.id.icon_container),
 //                        childAtPosition(
