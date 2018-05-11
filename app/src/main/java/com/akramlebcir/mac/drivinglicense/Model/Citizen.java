@@ -1,9 +1,9 @@
-package com.akramlebcir.mac.drivinglicense.model;
+package com.akramlebcir.mac.drivinglicense.Model;
 
-import java.util.ArrayList;
 
 public class Citizen {
     private String uid;
+    private String token;
     private String sixe;
     private String placeofbirth;
     private String picture;
@@ -20,8 +20,9 @@ public class Citizen {
 
     }
 
-    public Citizen(String uid, String sixe, String placeofbirth, String picture, String nationality, String firstname, String lastname, String dateofbirth, String bloodtype, String address, int age, DriverLicense driverLicense) {
+    public Citizen(String uid,String token, String sixe, String placeofbirth, String picture, String nationality, String firstname, String lastname, String dateofbirth, String bloodtype, String address, int age, DriverLicense driverLicense) {
         this.uid = uid;
+        this.token = token;
         this.sixe = sixe;
         this.placeofbirth = placeofbirth;
         this.picture = picture;
@@ -41,6 +42,14 @@ public class Citizen {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getSixe() {

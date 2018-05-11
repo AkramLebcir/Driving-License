@@ -24,6 +24,7 @@
             android:id="@+id/from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
             android:ellipsize="end"
             android:lines="1"
             android:textColor="@color/from"
@@ -42,6 +43,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:lines="1"
+                android:paddingRight="10dp"
                 android:textColor="@color/subject"
                 android:textSize="@dimen/msg_text_secondary"
                 android:textStyle="bold" />

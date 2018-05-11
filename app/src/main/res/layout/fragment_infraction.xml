@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.InfractionFragment">
+    tools:context=".Controller.InfractionFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/numberofpoints_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            app:layout_constraintTop_toBottomOf="@+id/numberofpoints_id">
 
             <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@+id/swipe_refresh_layout"
@@ -55,6 +55,7 @@
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingBottom="40dp"
                     android:scrollbars="vertical" />
 
             </android.support.v4.widget.SwipeRefreshLayout>
@@ -67,13 +68,15 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="34dp"
+            android:layout_marginStart="34dp"
             android:clickable="true"
             android:src="@drawable/ic_payment_black_24dp"
             app:backgroundTint="@color/colorPrimary"
             app:elevation="16dp"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

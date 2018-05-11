@@ -15,7 +15,7 @@
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
         <activity
-            android:name=".Activity.splashActivity"
+            android:name=".Controller.splashActivity"
             android:theme="@style/splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,13 +24,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.ResetPasswordActivity"
+            android:name=".Controller.ResetPasswordActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activity.LoginActivity"
+            android:name=".Controller.LoginActivity"
             android:theme="@style/splash" />
-        <activity android:name=".Activity.MainActivity"
+        <activity android:name=".Controller.MainActivity"
             android:theme="@style/splash">
 
         </activity>

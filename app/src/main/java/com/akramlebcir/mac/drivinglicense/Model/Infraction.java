@@ -1,4 +1,4 @@
-package com.akramlebcir.mac.drivinglicense.model;
+package com.akramlebcir.mac.drivinglicense.Model;
 
 /**
  * Created by Ravi Tamada on 21/02/17.

@@ -1,4 +1,4 @@
-package com.akramlebcir.mac.drivinglicense.Activity;
+package com.akramlebcir.mac.drivinglicense.Controller;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, LoginActivity.class));
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
             }
         });
 
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 //authenticate user
-                auth.signInWithEmailAndPassword(email+"@gmail.com", password)
+                auth.signInWithEmailAndPassword(email+"@citizen.com", password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {

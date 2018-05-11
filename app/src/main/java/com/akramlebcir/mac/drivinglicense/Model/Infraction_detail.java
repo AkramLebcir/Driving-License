@@ -1,4 +1,4 @@
-package com.akramlebcir.mac.drivinglicense.model;
+package com.akramlebcir.mac.drivinglicense.Model;
 
 public class Infraction_detail {
     private String title;

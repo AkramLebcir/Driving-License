@@ -1,4 +1,4 @@
-package com.akramlebcir.mac.drivinglicense.Activity;
+package com.akramlebcir.mac.drivinglicense.Controller;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

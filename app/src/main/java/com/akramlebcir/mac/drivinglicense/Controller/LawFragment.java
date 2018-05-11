@@ -1,22 +1,18 @@
-package com.akramlebcir.mac.drivinglicense.Fragment;
+package com.akramlebcir.mac.drivinglicense.Controller;
 
 
-import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.akramlebcir.mac.drivinglicense.R;
-import com.akramlebcir.mac.drivinglicense.model.Infraction_detail;
-import com.akramlebcir.mac.drivinglicense.model.Infraction_niv;
+import com.akramlebcir.mac.drivinglicense.Model.Infraction_detail;
+import com.akramlebcir.mac.drivinglicense.Model.Infraction_niv;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,11 +74,11 @@ public class LawFragment extends android.support.v4.app.Fragment {
             }
         });
         
-        layout.addSection(getSection("Infraction Niv 1","1",2000,1));
-        layout.addSection(getSection("Infraction Niv 2","2",2500,2));
-        layout.addSection(getSection("Infraction Niv 3","3",3000,4));
-        layout.addSection(getSection("Infraction Niv 4","4",5000,6));
-        layout.addSection(getSection("Infraction Niv 5","5",20000,10));
+        layout.addSection(getSection("Level of Infraction 1","1",2000,1));
+        layout.addSection(getSection("Level of Infraction 2","2",2500,2));
+        layout.addSection(getSection("Level of Infraction 3","3",3000,4));
+        layout.addSection(getSection("Level of Infraction 4","4",5000,6));
+        layout.addSection(getSection("Level of Infraction 5","5",20000,10));
     }
 
     private Section<Infraction_niv,Infraction_detail> getSection(String title_niv,String id,int prix , int point) {

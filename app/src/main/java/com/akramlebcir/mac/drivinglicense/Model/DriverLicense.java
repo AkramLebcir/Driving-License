@@ -1,4 +1,4 @@
-package com.akramlebcir.mac.drivinglicense.model;
+package com.akramlebcir.mac.drivinglicense.Model;
 
 import java.util.ArrayList;
 

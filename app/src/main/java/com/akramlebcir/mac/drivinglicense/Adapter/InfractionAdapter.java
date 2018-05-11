@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.akramlebcir.mac.drivinglicense.R;
 import com.akramlebcir.mac.drivinglicense.helper.FlipAnimator;
-import com.akramlebcir.mac.drivinglicense.model.Infraction;
+import com.akramlebcir.mac.drivinglicense.Model.Infraction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,7 +197,7 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
     }
 
     private void applyImportant(MyViewHolder holder, Infraction infraction) {
-        if (infraction.isPay()) {
+        if (!infraction.isPay()) {
             holder.iconImp.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.ic_point_black_24dp));
             holder.iconImp.setColorFilter(ContextCompat.getColor(mContext, R.color.icon_tint_selected));
         } else {
@@ -207,17 +207,10 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
     }
 
     private void applyReadStatus(MyViewHolder holder, Infraction infraction) {
-//        if (infraction.isRead()) {
             holder.infractionname.setTypeface(null, Typeface.NORMAL);
             holder.point.setTypeface(null, Typeface.NORMAL);
             holder.infractionname.setTextColor(ContextCompat.getColor(mContext, R.color.subject));
             holder.point.setTextColor(ContextCompat.getColor(mContext, R.color.message));
-//        } else {
-//            holder.infractionname.setTypeface(null, Typeface.BOLD);
-//            holder.point.setTypeface(null, Typeface.BOLD);
-//            holder.infractionname.setTextColor(ContextCompat.getColor(mContext, R.color.from));
-//            holder.point.setTextColor(ContextCompat.getColor(mContext, R.color.subject));
-//        }
     }
 
     @Override
@@ -248,8 +241,7 @@ public class InfractionAdapter extends RecyclerView.Adapter<InfractionAdapter.My
     }
 
     public List<Integer> getSelectedItems() {
-        List<Integer> items =
-                new ArrayList<>(selectedItems.size());
+        List<Integer> items = new ArrayList<>(selectedItems.size());
         for (int i = 0; i < selectedItems.size(); i++) {
             items.add(selectedItems.keyAt(i));
         }

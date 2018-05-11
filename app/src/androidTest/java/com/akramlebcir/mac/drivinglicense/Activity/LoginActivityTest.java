@@ -2,13 +2,13 @@ package com.akramlebcir.mac.drivinglicense.Activity;
 
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.ViewInteraction;
-import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.rule.ActivityTestRule;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
 import com.akramlebcir.mac.drivinglicense.R;
+import com.akramlebcir.mac.drivinglicense.Controller.LoginActivity;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -19,16 +19,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.longClick;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.swipeUp;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.is;

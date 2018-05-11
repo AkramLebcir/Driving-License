@@ -1,43 +1,43 @@
-package com.akramlebcir.mac.drivinglicense.Activity;
+package com.akramlebcir.mac.drivinglicense.Controller;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.akramlebcir.mac.drivinglicense.Fragment.InfractionFragment;
-import com.akramlebcir.mac.drivinglicense.Fragment.LawFragment;
 import com.akramlebcir.mac.drivinglicense.R;
 import com.akramlebcir.mac.drivinglicense.Adapter.ViewPagerAdapter;
-import com.akramlebcir.mac.drivinglicense.model.Citizen;
-import com.akramlebcir.mac.drivinglicense.model.DriverLicense;
-import com.akramlebcir.mac.drivinglicense.model.Infraction;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.akramlebcir.mac.drivinglicense.helper.MyPreference;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     public Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
+        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID,auth.getUid());
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, auth.getUid());
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+        MyPreference myPrefrence = MyPreference.getInstance(getApplicationContext());
+        myPrefrence.saveData("auth",auth.getUid());
+
+        String auth = myPrefrence.getData("auth");
+
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
 //
@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_id);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Main Page");
+            getSupportActionBar().setTitle("Driving License");
         }
-        toolbar.setSubtitle("Test Subtitle");
+//        toolbar.setSubtitle("Test Subtitle");
         toolbar.inflateMenu(R.menu.main_menu);
 
         android.support.v4.app.Fragment f1 = new InfractionFragment();
