@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="Niv_1">
-        <item name="1" type="text">l éclairage et le freinage des cycles</item>
-        <item name="2" type="text">l éclairage, la signalisation et le freinage des cyclomoteurs et motocyclettes</item>
-        <item name="3" type="text">la présentation des documents de bord du véhicule et, le cas échéant, le brevet professionnel</item>
-        <item name="4" type="text">l usage d un dispositif ou d un équipement de véhicule non conforme</item>
-        <item name="5" type="text">contravention des piétons aux règles régissant leur circulation, notamment celles afférentes à lusage des passages protégés</item>
-        <item name="6" type="text">défectuosité des dispositifs déclairage et de signalisation des véhicules automobiles</item>
-        <item name="7" type="text">port de la ceinture de sécurité par les passagers dun véhicule à moteur.</item>
+        <item name="1" type="text">lighting and braking cycles </item>
+        <item name="2" type="text">lighting, signaling and braking of mopeds and motorcycles </item>
+        <item name="3" type="text"> the presentation of the vehicle documents and, where appropriate, the professional certificate</item>
+        <item name="4" type="text">the use of a device or non-compliant vehicle equipment </item>
+        <item name="5" type="text"> contravention of pedestrians to the rules governing their movement, in particular those relating to the use of protected passages</item>
+        <item name="6" type="text">defective lighting and signaling devices for motor vehicles </item>
+        <item name="7" type="text">wearing seat belts by passengers of a motor vehicle </item>
 
     </array>
     <array name="Niv_2">
-        <item name="1" type="text">contravention aux dispositions relatives à lemploi des dispositifs sonores</item>
-        <item name="2" type="text">circulation sur les chaussées, voies, pistes, bandes,trottoirs ou accotements réservés à la circulation des véhicules de transport  ou la circulation des piétons</item>
-        <item name="3" type="text">réduction anormale de la vitesse, sans raison impérieuse, de nature à diminuer la fluidité du trafic</item>
-        <item name="4" type="text">les plaques dimmatriculation, les équipements et la signalisation des transports exceptionnels ainsi que les indicateurs de vitesse</item>
-        <item name="5" type="text">l apposition dune signalisation appropriée par tout conducteur titulaire dun permis de conduire en période probatoire</item>
-        <item name="6" type="text">l empiètement dune ligne continue</item>
-        <item name="7" type="text">l arrêt et au stationnement abusif, gênant la circulation routière</item>
-        <item name="8" type="text">la circulation, sur les voies ouvertes à la circulation dun véhicule à moteur ou remorqué sans que ce véhicule soit muni de plaques dimmatriculation</item>
-        <item name="9" type="text">au défaut de déclaration du transfert de propriété dun véhicule ou de changement de résidence du propriétaire</item>
-        <item name="10" type="text">dépassement de la vitesse limite autorisée de 10%</item>
+        <item name="1" type="text">contravention of the provisions relating to the use of sound devices </item>
+        <item name="2" type="text"> traffic on roads, lanes, tracks, strips, sidewalks or verges reserved for the movement of transport vehicles or pedestrian traffic</item>
+        <item name="3" type="text"> abnormal reduction of speed, without any compelling reason, likely to reduce the flow of traffic</item>
+        <item name="4" type="text"> registration plates, exceptional transport equipment and signaling as well as speed indicators</item>
+        <item name="5" type="text"> the affixing of appropriate signage by any driver holding a driving license during a probationary period</item>
+        <item name="6" type="text"> the encroachment of a continuous line</item>
+        <item name="7" type="text"> stopping and / or improper parking, impeding road traffic</item>
+        <item name="8" type="text"> traffic, on lanes open to the circulation of a motor vehicle or towed vehicle without that vehicle being provided with license plates</item>
+        <item name="9" type="text"> failure to report the transfer of ownership of a vehicle or change of residence of the owner</item>
+        <item name="10" type="text"> exceeding the speed limit of 10%</item>
     </array>
     <array name="Niv_3">
-        <item name="1" type="text">dépassement de la vitesse limite autorisée de plus de 10% et moins de 20%,</item>
-        <item name="2" type="text">interdictions ou restrictions de circulation, prévues sur certains itinérairees</item>
-        <item name="3" type="text">au port de la ceinture de sécurité par le conducteur dun véhicule à moteur</item>
-        <item name="4" type="text">port obligatoire du casque pour les conducteurs et passagers de cyclomoteurs et motocyclettes</item>
-        <item name="5" type="text">circulation, à larrêt ou au stationnement sans nécessité impérieuse, sur la bande darrêt durgence dune autoroute</item>
-        <item name="6" type="text">l arrêt ou au stationnement dangereux</item>
-        <item name="7" type="text">l interdiction du transport des enfants ayant moins de dix(10) ans aux places avant</item>
-        <item name="8" type="text">la pose de tout film plastique ou tout autre procédé opaque sur les vitres du véhicule</item>
-        <item name="9" type="text">la nature,à la forme, et à létat des pneumatiques des véhicules à moteur non conformes aux normes admises></item>
+        <item name="1" type="text"> exceeding the authorized speed limit by more than 10% and less than 20%</item>
+        <item name="2" type="text"> Prohibitions or restrictions of movement, provided on certain routes</item>
+        <item name="3" type="text">wearing a seat belt by the driver of a motor vehicle </item>
+        <item name="4" type="text"> mandatory use of the helmet for drivers and passengers of mopeds and motorcycles</item>
+        <item name="5" type="text">traffic, when stopped or parked without any compelling need, on the emergency stop strip of a motorway </item>
+        <item name="6" type="text"> stop or parking dangerous</item>
+        <item name="7" type="text">prohibition of transportation of children under ten (10) years old to front seats </item>
+        <item name="8" type="text">he installation of any plastic film or any other opaque process on the windows of the vehicle </item>
+        <item name="9" type="text">he nature, shape, and condition of the tires of motor vehicles that do not meet accepted standards </item>
 
     </array>
     <array name="Niv_4">
-        <item name="1" type="text">contravention aux dispositions relatives au sens imposé à la circulation</item>
-        <item name="2" type="text">contravention aux dispositions relatives aux intersections de routes et à la priorité de passage</item>
-        <item name="3" type="text">contravention aux dispositions relatives aux croisements et dépassements</item>
-        <item name="4" type="text">contravention aux dispositions relatives aux signalisations prescrivant larrêt absolu</item>
-        <item name="5" type="text">contravention aux dispositions relatives aux manuvres interdites sur autoroutes et routes express</item>
-        <item name="6" type="text">l accélération dallure par le conducteur dun véhicule sur le point dêtre dépassé</item>
-        <item name="7" type="text">circulation ou au stationnement sur la chaussée, la nuit ou par temps de brouillard, en un lieu dépourvu déclairage public, dun véhicule sans éclairage ni signalisation</item>
-        <item name="8" type="text">l emprunt de certains tronçons de route interdits à la circulation ou sur certains ponts à charge limitée</item>
-        <item name="9" type="text">poids des véhicules à moteur non conformes aux normes admises</item>
-        <item name="10" type="text">freins des véhicules à moteur et à lattelage des remorques et des semi-remorques</item>
+        <item name="1" type="text"> contravention of the provisions on the meaning of traffic</item>
+        <item name="2" type="text">contravention of the provisions relating to intersections of roads and the priority of passage </item>
+        <item name="3" type="text">contravention of the provisions relating to crossings and overtaking </item>
+        <item name="4" type="text">contravention of the provisions relating to signs requiring absolute shutdown </item>
+        <item name="5" type="text"> contravention of the provisions relating to prohibited maneuvers on motorways and express roads</item>
+        <item name="6" type="text"> speeding up by the driver of a vehicle about to be overtaken</item>
+        <item name="7" type="text">traffic or parking on the roadway, at night or in fog, in a place without public lighting, a vehicle without lighting or signaling </item>
+        <item name="8" type="text"> borrowing certain sections of road prohibited from traffic or on certain limited load bridges</item>
+        <item name="9" type="text"> weight of motor vehicles not in compliance with accepted standards</item>
+        <item name="10" type="text">brakes for motor vehicles and coupling of trailers and semi-trailers </item>
     </array>
     <array name="Niv_5">
         <item name="1" type="text">Authentication failed, check your email and password or sign up Authentication failed, check your email and password or sign up</item>
